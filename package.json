@@ -1,0 +1,25 @@
+{
+  "name": "lib-node-http-server",
+  "version": "1.0.0",
+  "description": "Simple HTTP server based on Hapi.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "keywords": [
+    "HTTP",
+    "Hapi",
+    "server"
+  ],
+  "author": [
+    "Raphael Medaer <raphael.medaer@escaux.com>",
+    "Matthieu Sieben <matthieu.sieben@escaux.com>"
+  ],
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "mocha": "^2.3.4"
+  },
+  "dependencies": {
+    "hapi-lts": "^9.5.0"
+  }
+}
