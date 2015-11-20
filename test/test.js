@@ -34,4 +34,43 @@ describe('HTTPServer', function() {
             return assert.deepEqual(server.connections(), ["http://127.0.0.1:2000"]);
         });
     });
+    describe('#routes', function() {
+        var server;
+
+        before(function() {
+            server = new HTTPServer();
+        });
+
+        it('should be an empty array without adding route', function() {
+            return assert.deepEqual(server.routes(), []);
+        })
+    });
+    describe('#plugins', function() {
+        var server;
+
+        before(function() {
+            server = new HTTPServer();
+            return server.connection({host: '127.0.0.1', port: 2000});
+        });
+
+        it('add an empty plugin', function() {
+            return server.plugin(require('./empty_plugin.js'))
+            .then(function() {
+                return assert.ok(true);
+            })
+        });
+        it('add a basic plugin', function() {
+            return server.plugin(require('./basic_plugin.js'))
+            .then(function(err) {
+                return assert.ok(true);
+            })
+        });
+        it('route list should list plugin routes', function() {
+            return assert.deepEqual(server.routes(), [{
+                method: 'get',
+                connection: 'http://127.0.0.1:2000',
+                path: '/test'
+            }]);
+        });
+    });
 });
